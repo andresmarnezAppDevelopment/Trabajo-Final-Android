@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/blanco</item>
+        <item name="colorPrimaryDark">@color/azulosc</item>
+        <item name="colorAccent">@color/verde</item>
+    </style>
+
+    <style name="playlist_title">
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:color">@color/azulclaro</item>
+        <item name="android:background">@color/blanco</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
+    </style>
+
+</resources>

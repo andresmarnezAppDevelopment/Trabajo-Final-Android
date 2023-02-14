@@ -7,7 +7,4 @@ import androidx.room.PrimaryKey
 class Login(
     @PrimaryKey val user: String,
     val password: String) {
-
-
-
 }
