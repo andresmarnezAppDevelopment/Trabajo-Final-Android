@@ -9,6 +9,7 @@ class PlaylistViewModel(private val repository: PlaylistRepository) : ViewModel(
 
     val allPlaylists: LiveData<List<Playlist>> = repository.allPlaylists.asLiveData()
 
+
     fun insert(playlist: Playlist) = viewModelScope.launch {
         repository.insert(playlist)
     }

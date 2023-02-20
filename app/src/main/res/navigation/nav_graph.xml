@@ -8,9 +8,19 @@
 
     <fragment
         android:id="@+id/LoginFragment"
-        android:name="net.iessochoa.grupof.practicafinalandroid.ui.ui.login.LoginFragment"
+        android:name="net.iessochoa.grupof.practicafinalandroid.ui.LoginFragment"
         android:label="Log in"
         tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_LoginFragment_to_PlaylistFragment"
+            app:destination="@id/PlaylistFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/PlaylistFragment"
+        android:name="net.iessochoa.grupof.practicafinalandroid.ui.PlaylistsFragment"
+        android:label="Playlists"
+        tools:layout="@layout/fragment_playlists">
     </fragment>
 
 </navigation>

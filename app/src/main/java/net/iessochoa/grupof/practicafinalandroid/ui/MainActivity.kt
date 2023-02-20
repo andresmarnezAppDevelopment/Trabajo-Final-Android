@@ -1,28 +1,25 @@
 package net.iessochoa.grupof.practicafinalandroid.ui
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import net.iessochoa.grupof.practicafinalandroid.R
-import net.iessochoa.grupof.practicafinalandroid.databinding.ActivityMainBinding
+import net.iessochoa.grupof.practicafinalandroid.databinding.ContentMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ContentMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ContentMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
     }
