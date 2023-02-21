@@ -1,3 +1,5 @@
+@file:Suppress("OverrideDeprecatedMigration")
+
 package net.iessochoa.grupof.practicafinalandroid.ui
 
 import androidx.lifecycle.ViewModelProvider
@@ -14,10 +16,6 @@ import net.iessochoa.grupof.practicafinalandroid.ui.adapters.PlaylistAdapter
 
 class PlaylistsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = PlaylistsFragment()
-    }
-
     private lateinit var viewModel: PlaylistViewModel
 
     override fun onCreateView(
@@ -33,10 +31,5 @@ class PlaylistsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_playlists, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(PlaylistViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }

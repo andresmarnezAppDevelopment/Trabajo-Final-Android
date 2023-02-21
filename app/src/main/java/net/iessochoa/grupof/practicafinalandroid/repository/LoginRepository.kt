@@ -1,17 +1,29 @@
 package net.iessochoa.grupof.practicafinalandroid.repository
 
-import androidx.annotation.WorkerThread
-import kotlinx.coroutines.flow.Flow
+import android.app.Application
+import android.content.Context
 import net.iessochoa.grupof.practicafinalandroid.dao.LoginDAO
-import net.iessochoa.grupof.practicafinalandroid.dao.PlaylistDAO
-import net.iessochoa.grupof.practicafinalandroid.model.Playlist
+import net.iessochoa.grupof.practicafinalandroid.db.MixMuseDataBase
+import net.iessochoa.grupof.practicafinalandroid.model.Login
+import kotlin.math.log
 
-class LoginRepository (private val loginDAO: LoginDAO) {
+object LoginRepository {
 
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
-    suspend fun loginUser(user: String, password: String) {
+    //
+    private lateinit var modelDAO: LoginDAO
+    private lateinit var application: Application
+    private var login: Login? = null
 
-        //IMPLEMENTCHECKS
+    operator fun invoke(context: Context) {
+
+        this.application = context.applicationContext as Application
+        modelDAO = MixMuseDataBase.getDatabase(application).loginDAO()
     }
+
+    fun getLogin(name : String) : Login? {
+        login = modelDAO.getLogin(name)
+        return login
+    }
+
+    fun getLogin() = this.login
 }

@@ -5,10 +5,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "playlists")
 class Playlist(
-    @PrimaryKey(autoGenerate = true) val id: Float,
+    @PrimaryKey(autoGenerate = true) val id: Long,
     val user: String,
     val name: String,
-    val songs: List<Song> = ArrayList<Song>()
+    val songs: List<Song> = ArrayList()
 ) {
 
 }

@@ -10,14 +10,14 @@ import net.iessochoa.grupof.practicafinalandroid.model.Login
 @Dao
 interface LoginDAO {
     @Query("SELECT * FROM logins ORDER BY user ASC")
-    suspend fun getAllLogs(): Flow<List<Login>>
+    fun getAllLogs(): Flow<List<Login>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(login: Login)
+    fun insert(login: Login)
 
     @Query("DELETE FROM logins")
-    suspend fun deleteAll()
+    fun deleteAll()
 
     @Query("SELECT * FROM logins WHERE user = :user")
-    fun getLogin(user: String): Login
+    fun getLogin(user: String): Login?
 }
