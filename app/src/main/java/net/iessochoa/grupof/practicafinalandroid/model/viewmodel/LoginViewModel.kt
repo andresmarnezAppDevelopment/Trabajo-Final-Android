@@ -11,7 +11,6 @@ import net.iessochoa.grupof.practicafinalandroid.repository.LoginRepository
 import net.iessochoa.grupof.practicafinalandroid.repository.PlaylistRepository
 
 class LoginViewModel(app: Application) : AndroidViewModel(app){
-
     private val repository : LoginRepository
 
     init {
@@ -20,12 +19,10 @@ class LoginViewModel(app: Application) : AndroidViewModel(app){
     }
 
     suspend fun checkLogin(username : String) : Login? {
-
         viewModelScope.launch(Dispatchers.IO) {
             repository.getLogin(username)
         }.join()
 
         return repository.getLogin()
     }
-
 }

@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.runBlocking
 import net.iessochoa.grupof.practicafinalandroid.databinding.FragmentLoginBinding
@@ -44,7 +45,8 @@ class LoginFragment : Fragment() {
                     Toast.makeText(context, "That username does not exist.", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(context, ("Hello, " + log!!.user), Toast.LENGTH_LONG).show()
-
+                    val accion = LoginFragmentDirections.actionLoginFragmentToPlaylistFragment()
+                    findNavController().navigate(accion)
                 }
             }
         }

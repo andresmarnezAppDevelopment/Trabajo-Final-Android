@@ -9,6 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import net.iessochoa.grupof.practicafinalandroid.dao.LoginDAO
+import net.iessochoa.grupof.practicafinalandroid.dao.PlaylistDAO
 import net.iessochoa.grupof.practicafinalandroid.model.*
 
 @Database(entities = [(Login::class), (Playlist::class), (Song::class)], version = 1, exportSchema = false)
@@ -16,6 +17,7 @@ import net.iessochoa.grupof.practicafinalandroid.model.*
 public abstract class MixMuseDataBase : RoomDatabase() {
 
     abstract fun loginDAO(): LoginDAO
+    abstract fun playlistDAO(): PlaylistDAO
 
     companion object {
 

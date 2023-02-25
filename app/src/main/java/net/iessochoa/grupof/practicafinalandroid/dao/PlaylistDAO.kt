@@ -9,7 +9,8 @@ import net.iessochoa.grupof.practicafinalandroid.model.Playlist
 
 @Dao
 interface PlaylistDAO {
-
+    //TODO: Aquí pasan cosas
+    /*
     @Query("SELECT * FROM playlists ORDER BY user ASC")
     fun getAllSongs(): Flow<List<Playlist>>
 
@@ -24,5 +25,5 @@ interface PlaylistDAO {
 
     @Query("DELETE FROM playlists")
     suspend fun deleteAll()
-
+    */
 }

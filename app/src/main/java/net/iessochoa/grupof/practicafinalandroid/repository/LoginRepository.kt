@@ -8,8 +8,6 @@ import net.iessochoa.grupof.practicafinalandroid.model.Login
 import kotlin.math.log
 
 object LoginRepository {
-
-    //
     private lateinit var modelDAO: LoginDAO
     private lateinit var application: Application
     private var login: Login? = null
