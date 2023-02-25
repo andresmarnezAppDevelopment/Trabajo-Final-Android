@@ -21,6 +21,16 @@
         android:name="net.iessochoa.grupof.practicafinalandroid.ui.PlaylistsFragment"
         android:label="Playlists"
         tools:layout="@layout/fragment_playlists">
+        <action
+            android:id="@+id/action_PlaylistFragment_to_SongSearchFragment"
+            app:destination="@id/SongSearchFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SongSearchFragment"
+        android:name="net.iessochoa.grupof.practicafinalandroid.ui.SongSearchFragment"
+        android:label="Song Searching"
+        tools:layout="@layout/fragment_song_search">
     </fragment>
 
 </navigation>

@@ -10,6 +10,7 @@ class Song(
     val artist: String,
     val album: String,
     val year: String,
+    val cover: String
     ) {
 
 }
