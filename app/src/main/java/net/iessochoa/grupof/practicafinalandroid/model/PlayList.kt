@@ -8,5 +8,5 @@ class Playlist(
     @PrimaryKey(autoGenerate = true) val id: Long,
     val user: String,
     val name: String,
-    val songs: List<Song> = ArrayList()
-)
+    val id_songs: List<Long>,
+    )

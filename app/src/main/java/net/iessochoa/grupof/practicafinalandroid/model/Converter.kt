@@ -7,16 +7,16 @@ import com.google.gson.reflect.TypeToken
 class Converter {
 
     @TypeConverter
-    fun fromSongList(value: List<Song>): String {
+    fun fromSongList(value: List<Long>): String {
         val gson = Gson()
-        val type = object : TypeToken<List<Song>>() {}.type
+        val type = object : TypeToken<List<Long>>() {}.type
         return gson.toJson(value, type)
     }
 
     @TypeConverter
-    fun toSongList(value: String): List<Song> {
+    fun toSongList(value: String): List<Long> {
         val gson = Gson()
-        val type = object : TypeToken<List<Song>>() {}.type
+        val type = object : TypeToken<List<Long>>() {}.type
         return gson.fromJson(value, type)
     }
 }

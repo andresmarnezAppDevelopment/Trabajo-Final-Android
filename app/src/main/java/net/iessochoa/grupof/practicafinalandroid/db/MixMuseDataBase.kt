@@ -58,9 +58,9 @@ public abstract class MixMuseDataBase : RoomDatabase() {
             }
 
             suspend fun loadPlaylists(playlistDAO: PlaylistDAO){
-                playlistDAO.insert(Playlist(0,"admin","My Favourites Songs" , mutableListOf<Song>()))
-                playlistDAO.insert(Playlist(0,"admin","Rock and Roll" , mutableListOf<Song>()))
-                playlistDAO.insert(Playlist(0,"admin","Chillin'" , mutableListOf<Song>()))
+                playlistDAO.insert(Playlist(0,"admin","My Favourites Songs" , mutableListOf<Long>()))
+                playlistDAO.insert(Playlist(1,"admin","Rock and Roll" , mutableListOf<Long>()))
+                playlistDAO.insert(Playlist(2,"admin","Chillin'" , mutableListOf<Long>()))
 
             }
 
