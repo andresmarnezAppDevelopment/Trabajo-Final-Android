@@ -6,5 +6,4 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "logins")
 class Login(
     @PrimaryKey val user: String,
-    val password: String) {
-}
+    val password: String)

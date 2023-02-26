@@ -1,24 +1,31 @@
 package net.iessochoa.grupof.practicafinalandroid.model.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
+import net.iessochoa.grupof.practicafinalandroid.model.Login
 import net.iessochoa.grupof.practicafinalandroid.model.Playlist
 import net.iessochoa.grupof.practicafinalandroid.repository.LoginRepository
 import net.iessochoa.grupof.practicafinalandroid.repository.PlaylistRepository
 
-class LoginViewModel(private val repository: LoginRepository) : ViewModel(){
+class LoginViewModel(app: Application) : AndroidViewModel(app){
 
-    fun insert(user: String, password: String) = viewModelScope.launch {
-        repository.loginUser(user, password)
+    private val repository : LoginRepository
+
+    init {
+        LoginRepository(getApplication<Application>().applicationContext)
+        repository= LoginRepository
     }
 
-    class LoginViewModelFactory(private val repository: LoginRepository) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(LoginViewModelFactory::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return LoginViewModelFactory(repository) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
+    suspend fun checkLogin(username : String) : Login? {
+
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getLogin(username)
+        }.join()
+
+        return repository.getLogin()
     }
+
 }
