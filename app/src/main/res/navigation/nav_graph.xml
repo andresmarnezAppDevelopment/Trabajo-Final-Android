@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/LoginFragment"
         android:name="net.iessochoa.grupof.practicafinalandroid.ui.LoginFragment"
-        android:label="Log in"
+        android:label="Login"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_LoginFragment_to_PlaylistFragment"

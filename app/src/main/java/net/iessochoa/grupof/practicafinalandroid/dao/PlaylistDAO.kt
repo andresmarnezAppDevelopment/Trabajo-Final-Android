@@ -1,5 +1,6 @@
 package net.iessochoa.grupof.practicafinalandroid.dao
 
+import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -11,13 +12,10 @@ import net.iessochoa.grupof.practicafinalandroid.model.Playlist
 interface PlaylistDAO {
 
     @Query("SELECT * FROM playlists ORDER BY user ASC")
-    fun getAllSongs(): Flow<List<Playlist>>
+    fun getAllSongs(): List<Playlist>
 
     @Query("SELECT * FROM playlists WHERE user = :user")
-    fun getAllSongsByUser(user: String): Flow<List<Playlist>>
-
-    @Query("SELECT songs FROM playlists WHERE id = :id")
-    suspend fun getSongsById(id : Float)
+    fun getAllSongsByUser(user: String): List<Playlist>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(playlist: Playlist)

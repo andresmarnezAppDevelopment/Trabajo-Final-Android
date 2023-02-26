@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.BusquedaFragment">
+    tools:context=".ui.PlaylistsFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fbButton"
@@ -17,7 +17,7 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
+        android:id="@+id/playlist_recycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
