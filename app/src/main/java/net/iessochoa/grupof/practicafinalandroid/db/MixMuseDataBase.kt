@@ -48,6 +48,7 @@ public abstract class MixMuseDataBase : RoomDatabase() {
                 SINGLETON?.let {
                     database -> GlobalScope.launch {
                         loadUsers(database.loginDAO())
+                        loadSongs(database.songDAO())
                         loadPlaylists(database.playlistDAO())
                     }
                 }
@@ -64,6 +65,22 @@ public abstract class MixMuseDataBase : RoomDatabase() {
                 playlistDAO.insert(Playlist(2,"admin","Chillin'" , mutableListOf<Long>()))
                 playlistDAO.insert(Playlist(3,"admin","Test" , testList))
 
+            }
+
+            suspend fun loadSongs(songDAO: SongDAO){
+                songDAO.insert(Song(0,"Sin Señal","Quevedo" , "Donde quiero estar", "2023"))
+                songDAO.insert(Song(1,"Ingobernable","C. Tangana" , "El Madrileño", "2021"))
+                songDAO.insert(Song(2,"Los Tontos","C. Tangana" , "El Madrileño", "2021"))
+                songDAO.insert(Song(3,"The Song Is Over","The Who" , "Who's Next", "1971"))
+                songDAO.insert(Song(4,"Behind Blue Eyes","The Who" , "Who's Next", "1971"))
+                songDAO.insert(Song(5,"Mercy Mercy","Rolling Stones" , "Out of Our Heads", "1965"))
+                songDAO.insert(Song(6,"Ooh Yeah","Sophie and the Giants" , "Last Night", "2007"))
+                songDAO.insert(Song(7,"The Stars","Sophie and the Giants" , "Last Night", "2007"))
+                songDAO.insert(Song(8,"Hold The Line","Avicii" , "Tim", "2019"))
+                songDAO.insert(Song(9,"Zero","Image Dragons" , "Origins", "2018"))
+                songDAO.insert(Song(10,"Birds","Image Dragons" , "Origins", "2018"))
+                songDAO.insert(Song(11,"Lose Somebody","OneRepublic" , "Human", "2020"))
+                songDAO.insert(Song(12,"Forgot About You","OneRepublic" , "Human", "2020"))
             }
 
         }
