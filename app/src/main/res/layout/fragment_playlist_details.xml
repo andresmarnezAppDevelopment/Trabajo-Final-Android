@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlaylistDetailsFragment">
+    tools:context=".ui.PlaylistDetailsFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -16,23 +16,23 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:text="@string/tvPlaylistTitleName"
         android:textAlignment="center"
+        android:textSize="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvExample"
-        android:layout_width="0dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/playlist_recycler"
+        android:layout_width="411dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/hello_blank_fragment"
+        android:layout_marginTop="20dp"
+        android:theme="@style/Theme.MaterialComponents.Light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPlaylistTitleName" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPlaylistTitleName"
+        tools:listitem="@layout/songs_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
