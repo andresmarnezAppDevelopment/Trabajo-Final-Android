@@ -64,7 +64,7 @@ class SongSearchFragment: Fragment() {
             //se encuentre dentro de una corrutina
             getActivity()?.runOnUiThread{
                 if (songsObtained != null) {
-                    binding.textView2.text = songsObtained.tracks.name
+                    binding.textView2.text = songsObtained.tracks.trackItems[0].name + songsObtained.tracks.trackItems[0].album.release_date
                 }
 
                 if(llamadaApi.isSuccessful){
