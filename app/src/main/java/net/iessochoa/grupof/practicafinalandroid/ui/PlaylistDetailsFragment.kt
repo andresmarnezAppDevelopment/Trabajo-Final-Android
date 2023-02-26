@@ -32,6 +32,6 @@ class PlaylistDetailsFragment : Fragment() {
     private fun cargaInfoPlaylist(playlist: Playlist) {
         (requireActivity() as AppCompatActivity).supportActionBar?.title = "${playlist.name}"
         binding.tvPlaylistTitleName.text = playlist.name
-        binding.tvExample.text = playlist.id_songs.toString()
+        //binding.tvExample.text = playlist.id_songs.toString()
     }
 }
