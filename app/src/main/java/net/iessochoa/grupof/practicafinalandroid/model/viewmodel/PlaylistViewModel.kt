@@ -11,7 +11,6 @@ import net.iessochoa.grupof.practicafinalandroid.repository.LoginRepository
 import net.iessochoa.grupof.practicafinalandroid.repository.PlaylistRepository
 
 class PlaylistViewModel(app: Application) : AndroidViewModel(app) {
-
     private val repository: PlaylistRepository
 
     init {
@@ -19,9 +18,7 @@ class PlaylistViewModel(app: Application) : AndroidViewModel(app) {
         repository = PlaylistRepository
     }
 
-
     suspend fun getAllPlaylists(): List<Playlist> {
-
         viewModelScope.launch(Dispatchers.IO) {
             repository.updatePlaylists()
         }.join()
@@ -30,14 +27,17 @@ class PlaylistViewModel(app: Application) : AndroidViewModel(app) {
         return repository.getPlaylists()
     }
 
-
     suspend fun getPlaylistsById(username: String): List<Playlist> {
-
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateSongsByUser(username)
         }.join()
 
         return repository.getPlaylists()
+    }
 
+    suspend fun deleteById(id: Long?){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.deleteById(id)
+        }.join()
     }
 }

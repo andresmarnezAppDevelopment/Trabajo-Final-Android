@@ -70,7 +70,11 @@ class PlaylistsFragment : Fragment() {
             }
 
             override fun onListaBorrarClick(lista: Playlist?) {
-                //Todo: Acción de borrar una playlist de la base de datos
+                runBlocking {
+                    if (lista != null) {
+                        viewModel.deleteById(lista.id)
+                    }
+                }
             }
 
         }

@@ -36,6 +36,10 @@ object PlaylistRepository {
         return playlists
     }
 
+    suspend fun deleteById(id: Long?){
+        modelDAO.deleteById(id)
+    }
+
 
 
 }

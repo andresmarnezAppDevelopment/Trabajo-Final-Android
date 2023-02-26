@@ -23,4 +23,6 @@ interface PlaylistDAO {
     @Query("DELETE FROM playlists")
     suspend fun deleteAll()
 
+    @Query("DELETE FROM playlists WHERE id = :id")
+    suspend fun deleteById(id: Long?)
 }
