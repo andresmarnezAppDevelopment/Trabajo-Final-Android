@@ -41,6 +41,7 @@ class PlaylistsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         iniciaRecyclerView()
+        inicializaCRUD()
 
         runBlocking{
             playlistAdapter.setLista(viewModel.getAllPlaylists())
@@ -53,6 +54,25 @@ class PlaylistsFragment : Fragment() {
         with(binding.playlistRecycler) {
             layoutManager = LinearLayoutManager(activity)
             adapter = playlistAdapter
+        }
+    }
+
+    private fun inicializaCRUD(){
+        //Creación de una nueva playlist
+        binding.fbButton.setOnClickListener{
+            //Todo: Cosas para crear la nueva Playlist
+        }
+
+        playlistAdapter.onListaClickListener = object : PlaylistAdapter.OnPlaylistClickListener{
+            override fun onListaClick(lista: Playlist?) {
+                val accion = PlaylistsFragmentDirections.actionPlaylistFragmentToPlaylistDetailsFragment(lista)
+                findNavController().navigate(accion)
+            }
+
+            override fun onListaBorrarClick(lista: Playlist?) {
+                //Todo: Acción de borrar una playlist de la base de datos
+            }
+
         }
     }
 

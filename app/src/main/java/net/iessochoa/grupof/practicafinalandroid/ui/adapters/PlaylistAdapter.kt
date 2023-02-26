@@ -12,14 +12,8 @@ import net.iessochoa.grupof.practicafinalandroid.databinding.PlaylistItemBinding
 import net.iessochoa.grupof.practicafinalandroid.model.Playlist
 
 class PlaylistAdapter : RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder>() {
-
     var playlists: List<Playlist>? = null
     var onListaClickListener: OnPlaylistClickListener? = null
-
-    interface OnPlaylistClickListener {
-        fun onListaClick(lista: Playlist?)
-        fun onListaBorrarClick(lista: Playlist?)
-    }
 
     inner class PlaylistViewHolder(val binding: PlaylistItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -69,5 +63,10 @@ class PlaylistAdapter : RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder>
         override fun areContentsTheSame(oldItem: Playlist, newItem: Playlist): Boolean {
             return oldItem.name == newItem.name
         }
+    }
+
+    interface OnPlaylistClickListener {
+        fun onListaClick(lista: Playlist?)
+        fun onListaBorrarClick(lista: Playlist?)
     }
 }
