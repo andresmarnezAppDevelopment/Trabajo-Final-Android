@@ -60,9 +60,9 @@ public abstract class MixMuseDataBase : RoomDatabase() {
 
             suspend fun loadPlaylists(playlistDAO: PlaylistDAO){
                 val testList : List<Long> = listOf<Long>(1L, 2L)
-                playlistDAO.insert(Playlist(0,"admin","My Favourites Songs" , mutableListOf<Long>()))
-                playlistDAO.insert(Playlist(1,"admin","Rock and Roll" , mutableListOf<Long>()))
-                playlistDAO.insert(Playlist(2,"admin","Chillin'" , mutableListOf<Long>()))
+                playlistDAO.insert(Playlist(0,"admin","My Favourites Songs" , mutableListOf<Long>(7,8,9)))
+                playlistDAO.insert(Playlist(1,"admin","Rock and Roll" , mutableListOf<Long>(4,5,6)))
+                playlistDAO.insert(Playlist(2,"admin","Chillin'" , mutableListOf<Long>(1,2,3)))
                 playlistDAO.insert(Playlist(3,"admin","Test" , testList))
 
             }
