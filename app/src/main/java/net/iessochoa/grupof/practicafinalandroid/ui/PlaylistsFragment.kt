@@ -10,12 +10,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.runBlocking
 import net.iessochoa.grupof.practicafinalandroid.R
 import net.iessochoa.grupof.practicafinalandroid.databinding.FragmentPlaylistsBinding
 import net.iessochoa.grupof.practicafinalandroid.model.Playlist
-import net.iessochoa.grupof.practicafinalandroid.model.Song
 import net.iessochoa.grupof.practicafinalandroid.model.viewmodel.PlaylistViewModel
 import net.iessochoa.grupof.practicafinalandroid.ui.adapters.PlaylistAdapter
 
@@ -48,6 +46,11 @@ class PlaylistsFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun iniciaRecyclerView() {
         playlistAdapter = PlaylistAdapter()
 
@@ -70,18 +73,29 @@ class PlaylistsFragment : Fragment() {
             }
 
             override fun onListaBorrarClick(lista: Playlist?) {
-                runBlocking {
-                    if (lista != null) {
-                        viewModel.deleteById(lista.id)
-                    }
-                }
+                borrarPlaylist(lista)
             }
 
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+    fun borrarPlaylist(lista: Playlist?){
+            if(lista != null) {
+                AlertDialog.Builder(activity as Context)
+                    .setTitle(android.R.string.dialog_alert_title)
+                    .setMessage(getString(R.string.playlistDeletionWarning, lista.name))
+                    .setPositiveButton(android.R.string.ok){v,_->
+                        runBlocking {
+                            viewModel.deleteById(lista.id)
+                            playlistAdapter.setLista(viewModel.getAllPlaylists())
+                        }
+                        v.dismiss()
+                    }
+                    //Comportamiento en caso de que se pulse el botón de cancelar, en el que simplemente cerramos el diálogo
+                    .setNegativeButton(android.R.string.cancel){v,_->v.dismiss()}
+                    .setCancelable(false)
+                    .create()
+                    .show()
+            }
+        }
 }
