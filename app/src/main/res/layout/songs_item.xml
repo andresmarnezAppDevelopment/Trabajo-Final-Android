@@ -42,7 +42,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvAge"
+            android:id="@+id/tvYear"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
