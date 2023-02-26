@@ -47,14 +47,20 @@ public abstract class MixMuseDataBase : RoomDatabase() {
                 super.onCreate(db)
                 SINGLETON?.let {
                     database -> GlobalScope.launch {
-                        cargarUsers(database.loginDAO())
+                        loadUsers(database.loginDAO())
+                        loadPlaylists(database.playlistDAO())
                     }
                 }
             }
 
-            suspend fun cargarUsers(loginDAO: LoginDAO){
-
+            fun loadUsers(loginDAO: LoginDAO){
                 loginDAO.insert(Login("admin","admin"))
+            }
+
+            suspend fun loadPlaylists(playlistDAO: PlaylistDAO){
+                playlistDAO.insert(Playlist(0,"admin","My Favourites Songs" , mutableListOf<Song>()))
+                playlistDAO.insert(Playlist(0,"admin","Rock and Roll" , mutableListOf<Song>()))
+                playlistDAO.insert(Playlist(0,"admin","Chillin'" , mutableListOf<Song>()))
 
             }
 

@@ -8,34 +8,57 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import net.iessochoa.grupof.practicafinalandroid.R
+import net.iessochoa.grupof.practicafinalandroid.databinding.PlaylistItemBinding
 import net.iessochoa.grupof.practicafinalandroid.model.Playlist
 
-class PlaylistAdapter : ListAdapter<Playlist, PlaylistAdapter.PlaylistHolder>(PlaylistsComparator()) {
+class PlaylistAdapter : RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaylistHolder {
-        return PlaylistHolder.create(parent)
+    var playlists: List<Playlist>? = null
+    var onListaClickListener: OnPlaylistClickListener? = null
+
+    interface OnPlaylistClickListener {
+        fun onListaClick(lista: Playlist?)
+        fun onListaBorrarClick(lista: Playlist?)
     }
 
-    override fun onBindViewHolder(holder: PlaylistHolder, position: Int) {
-        val current = getItem(position)
-        holder.bind(current.name)
+    inner class PlaylistViewHolder(val binding: PlaylistItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-    }
+        init {
+            binding.ivDelete.setOnClickListener {
+                val playlist = playlists?.get(this.adapterPosition)
+                onListaClickListener?.onListaBorrarClick(playlist)
+            }
 
-    class PlaylistHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val playlistItemView: TextView = itemView.findViewById(R.id.tvTitle)
-
-        fun bind(text: String?) {
-            playlistItemView.text = text
-        }
-
-        companion object {
-            fun create(parent: ViewGroup): PlaylistHolder {
-                val view: View = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.playlist_item, parent, false)
-                return PlaylistHolder(view)
+            binding.root.setOnClickListener {
+                val playlist = playlists?.get(this.adapterPosition)
+                onListaClickListener?.onListaClick(playlist)
             }
         }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaylistViewHolder {
+        val binding = PlaylistItemBinding
+            .inflate(LayoutInflater.from(parent.context), parent, false)
+
+        return PlaylistViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(playlistViewHolder: PlaylistViewHolder, pos: Int) {
+
+        with(playlistViewHolder) {
+            with(playlists!!.get(pos)) {
+
+                binding.tvTitle.text = name
+            }
+        }
+    }
+
+    override fun getItemCount(): Int = playlists?.size ?: 0
+
+    fun setLista(lista: List<Playlist>) {
+        playlists = lista
+        notifyDataSetChanged()
     }
 
     class PlaylistsComparator : DiffUtil.ItemCallback<Playlist>() {

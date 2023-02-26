@@ -10,22 +10,34 @@ import net.iessochoa.grupof.practicafinalandroid.model.Playlist
 import net.iessochoa.grupof.practicafinalandroid.repository.LoginRepository
 import net.iessochoa.grupof.practicafinalandroid.repository.PlaylistRepository
 
-class PlaylistViewModel(app: Application) : AndroidViewModel(app){
+class PlaylistViewModel(app: Application) : AndroidViewModel(app) {
 
-        private val repository : PlaylistRepository
+    private val repository: PlaylistRepository
 
-        init {
-            PlaylistRepository(getApplication<Application>().applicationContext)
-            repository= PlaylistRepository
-        }
+    init {
+        PlaylistRepository(getApplication<Application>().applicationContext)
+        repository = PlaylistRepository
+    }
 
-        suspend fun getAllPlaylists(username : String) : List<Playlist> {
 
-            viewModelScope.launch(Dispatchers.IO) {
-                repository.updateSongsByUser(username)
-            }.join()
+    suspend fun getAllPlaylists(): List<Playlist> {
 
-            return repository.getPlaylists()
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updatePlaylists()
+        }.join()
 
-        }
+        println(repository.getPlaylists().size)
+        return repository.getPlaylists()
+    }
+
+
+    suspend fun getPlaylistsById(username: String): List<Playlist> {
+
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateSongsByUser(username)
+        }.join()
+
+        return repository.getPlaylists()
+
+    }
 }

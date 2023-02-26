@@ -9,6 +9,4 @@ class Playlist(
     val user: String,
     val name: String,
     val songs: List<Song> = ArrayList()
-) {
-
-}
+)

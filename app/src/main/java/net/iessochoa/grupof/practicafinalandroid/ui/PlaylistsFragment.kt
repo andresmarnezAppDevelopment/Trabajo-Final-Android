@@ -11,8 +11,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.runBlocking
 import net.iessochoa.grupof.practicafinalandroid.R
 import net.iessochoa.grupof.practicafinalandroid.databinding.FragmentPlaylistsBinding
+import net.iessochoa.grupof.practicafinalandroid.model.Playlist
 import net.iessochoa.grupof.practicafinalandroid.model.Song
 import net.iessochoa.grupof.practicafinalandroid.model.viewmodel.PlaylistViewModel
 import net.iessochoa.grupof.practicafinalandroid.ui.adapters.PlaylistAdapter
@@ -40,16 +42,12 @@ class PlaylistsFragment : Fragment() {
 
         iniciaRecyclerView()
 
-        /*
-        viewModel.listasLiveData.observe(viewLifecycleOwner) { lista ->
-            //actualizaLista(lista)
-            listasAdapter.setLista(lista)
+        runBlocking{
+            playlistAdapter.setLista(viewModel.getAllPlaylists())
         }
-         */
     }
 
     private fun iniciaRecyclerView() {
-        //creamos el adaptador
         playlistAdapter = PlaylistAdapter()
 
         with(binding.playlistRecycler) {
@@ -61,13 +59,5 @@ class PlaylistsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun actualizaLista(lista: List<Song>?) {
-        var listaString = ""
-        lista?.forEach() {
-            listaString =
-                "$listaString ${it.id}-${it.name}-${it.album}-${it.artist}-${it.year}\n"
-        }
     }
 }

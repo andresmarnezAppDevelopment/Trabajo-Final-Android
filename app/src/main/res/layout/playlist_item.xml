@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="4dp"
-    app:cardCornerRadius="16dp">
+    android:layout_margin="40px"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,8 +15,8 @@
 
         <ImageView
             android:id="@+id/ivDelete"
-            android:layout_width="34dp"
-            android:layout_height="24dp"
+            android:layout_width="36dp"
+            android:layout_height="38dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
@@ -29,15 +28,21 @@
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
-            android:text="TextView"
+            android:textSize="16sp"
+            app:flow_verticalAlign="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/ivDelete"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
