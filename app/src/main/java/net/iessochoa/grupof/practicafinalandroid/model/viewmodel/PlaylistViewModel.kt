@@ -27,7 +27,7 @@ class PlaylistViewModel(app: Application) : AndroidViewModel(app) {
         return repository.getPlaylists()
     }
 
-    suspend fun getPlaylistsById(username: String): List<Playlist> {
+    suspend fun getPlaylistsByUsername(username: String): List<Playlist> {
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateSongsByUser(username)
         }.join()
@@ -40,4 +40,5 @@ class PlaylistViewModel(app: Application) : AndroidViewModel(app) {
             repository.deleteById(id)
         }.join()
     }
+
 }

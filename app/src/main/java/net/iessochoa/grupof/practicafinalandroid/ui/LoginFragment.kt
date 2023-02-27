@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.runBlocking
+import net.iessochoa.grupof.practicafinalandroid.R
 import net.iessochoa.grupof.practicafinalandroid.databinding.FragmentLoginBinding
 import net.iessochoa.grupof.practicafinalandroid.model.viewmodel.LoginViewModel
 
@@ -31,22 +32,29 @@ class LoginFragment : Fragment() {
 
         binding.login.setOnClickListener{
 
+            val user = binding.username.text.toString()
+            val password = binding.password.text.toString()
+
+            if(user.isBlank() || password.isBlank()) {
+                Toast.makeText(context, getString(R.string.login_error), Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             runBlocking {
-                var log = viewModel.checkLogin(binding.username.text.toString())
+                val log = viewModel.checkLogin(user)
 
                 if (log == null){
-                    viewModel.createLogin(binding.username.text.toString(), binding.password.text.toString());
-                    Toast.makeText(context, "New user created:" + binding.username.text.toString(), Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToPlaylistFragment())
+                    viewModel.createLogin(user, password)
+                    Toast.makeText(context, "New user created:$user", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToPlaylistFragment(user))
                 } else {
 
-                    if(log.password == binding.password.text.toString() && log.user == binding.username.text.toString()){
+                    if(log.password == password && log.user == user){
                         Toast.makeText(context, ("Hello, " + log.user), Toast.LENGTH_LONG).show()
-                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToPlaylistFragment())
+                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToPlaylistFragment(log.user))
 
-                    } else {
-                        Toast.makeText(context, "Incorrect password.", Toast.LENGTH_SHORT).show()
-                    }
+                    } else
+                        Toast.makeText(context,  getString(R.string.password_error) , Toast.LENGTH_SHORT).show()
                 }
             }
         }
