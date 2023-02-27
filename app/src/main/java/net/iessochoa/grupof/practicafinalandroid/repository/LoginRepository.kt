@@ -25,5 +25,9 @@ object LoginRepository {
         return login
     }
 
+    fun createLogin(username: String, password: String) {
+        modelDAO.insert(Login(username,password))
+    }
+
     fun getLogin() = this.login
 }

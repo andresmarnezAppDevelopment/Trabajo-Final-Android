@@ -28,4 +28,10 @@ class LoginViewModel(app: Application) : AndroidViewModel(app){
         return repository.getLogin()
     }
 
+    suspend fun createLogin(username: String, password: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.createLogin(username, password)
+        }.join()
+    }
+
 }

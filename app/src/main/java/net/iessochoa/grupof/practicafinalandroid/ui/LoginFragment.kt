@@ -13,9 +13,7 @@ import net.iessochoa.grupof.practicafinalandroid.databinding.FragmentLoginBindin
 import net.iessochoa.grupof.practicafinalandroid.model.viewmodel.LoginViewModel
 
 class LoginFragment : Fragment() {
-    
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+
     private lateinit var binding: FragmentLoginBinding
     private val viewModel : LoginViewModel by activityViewModels()
 
@@ -37,7 +35,9 @@ class LoginFragment : Fragment() {
                 var log = viewModel.checkLogin(binding.username.text.toString())
 
                 if (log == null){
-                    Toast.makeText(context, "That username does not exist.", Toast.LENGTH_SHORT).show()
+                    viewModel.createLogin(binding.username.text.toString(), binding.password.text.toString());
+                    Toast.makeText(context, "New user created:" + binding.username.text.toString(), Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToPlaylistFragment())
                 } else {
 
                     if(log.password == binding.password.text.toString() && log.user == binding.username.text.toString()){
