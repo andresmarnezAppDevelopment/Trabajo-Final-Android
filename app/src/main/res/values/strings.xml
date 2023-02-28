@@ -61,7 +61,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="playlistDeletionWarning">¿Está seguro de que desea borrar la playlist "%s"?</string>
+    <string name="playlistDeletionWarning">Are you sure you want to delete the playlist "%s"?</string>
+    <string name="songDeletionWarning">Are you sure you want to delete the song "%s"?</string>
     <string name="action_search">Search</string>
     <string name="prompt_busqueda">Singer</string>
     <string name="tvPlaylistTitleName">Title Playlist</string>

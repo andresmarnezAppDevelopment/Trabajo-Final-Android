@@ -15,13 +15,27 @@ class SongViewModel (app: Application) : AndroidViewModel(app) {
     private val repository: SongRepository
 
     init {
-        PlaylistRepository(getApplication<Application>().applicationContext)
+        SongRepository(getApplication<Application>().applicationContext)
         repository = SongRepository
     }
 
-    suspend fun getAllSongs(): List<Song> {
+    suspend fun getAllSongs(id_songs: List<Long>): List<Song> {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateSongs(id_songs)
+        }.join()
+
         return repository.getSongs()
     }
+/*
+    suspend fun getAllSongsById(id_songs: List<Long>): List<Song> {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateSongs(id_songs)
+        }.join()
+
+        return repository.getSongs()
+    }
+
+ */
 
 
 
