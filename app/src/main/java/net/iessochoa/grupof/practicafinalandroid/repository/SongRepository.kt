@@ -12,13 +12,14 @@ object SongRepository {
     private lateinit var modelDAO: SongDAO
     private lateinit var application: Application
     private lateinit var songs: List<Song>
-    private lateinit var songs_aux: List<Song>
+    //private lateinit var songs_aux: ArrayList<Song>
     private lateinit var song: Song
 
     operator fun invoke(context: Context) {
         this.application = context.applicationContext as Application
         modelDAO = MixMuseDataBase.getDatabase(application).songDAO()
-        songs_aux = emptyList()
+        //songs_aux = emptyArray()
+        songs = emptyList()
     }
 
     fun getSongs() : List<Song>{
@@ -27,15 +28,24 @@ object SongRepository {
     fun updateSongs(id_songs: List<Long>){
 
         //songs = songs.toMutableList().add(modelDAO.getSongById(1l))
-/*
-        for (item in id_songs)
+
+        val songs_aux = ArrayList<Song>()
+
+        for (item in id_songs) {
+            //println(item)
+            //println(modelDAO.getSongById(item).name)
             //song = modelDAO.getSongById(1L)
-            songs_aux.toMutableList().add(modelDAO.getSongById(item))
+            song = modelDAO.getSongById(item)
+            songs_aux.add(song)
+            println(songs_aux)
+        }
 
         //songs_aux.toMutableList().add(modelDAO.getSongById(1L))
- */
-        //songs = songs_aux
-        songs = modelDAO.getAllSongs()
+
+
+
+        songs = songs_aux.toList()
+        //songs = modelDAO.getAllSongs()
     }
 /*
     private operator fun <Song> Collection<Song>.plus(element: Song): List<Song> {

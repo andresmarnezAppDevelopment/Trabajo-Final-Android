@@ -24,6 +24,7 @@ class SongViewModel (app: Application) : AndroidViewModel(app) {
             repository.updateSongs(id_songs)
         }.join()
 
+        println(repository.getSongs().size)
         return repository.getSongs()
     }
 /*
