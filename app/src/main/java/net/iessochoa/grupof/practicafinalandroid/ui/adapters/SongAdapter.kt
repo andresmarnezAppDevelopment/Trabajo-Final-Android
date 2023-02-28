@@ -2,15 +2,16 @@ package net.iessochoa.grupof.practicafinalandroid.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import net.iessochoa.grupof.practicafinalandroid.databinding.PlaylistItemBinding
+import com.bumptech.glide.Glide
 import net.iessochoa.grupof.practicafinalandroid.databinding.SongsItemBinding
 import net.iessochoa.grupof.practicafinalandroid.model.Playlist
 import net.iessochoa.grupof.practicafinalandroid.model.Song
 
 class SongAdapter : RecyclerView.Adapter<SongAdapter.SongViewHolder>()  {
     var songs: List<Song>? = null
-    var onListaClickListener: SongAdapter.OnSongClickListener? = null
+    var onListaClickListener: onSongClickListener? = null
 
     inner class SongViewHolder(val binding: SongsItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -20,21 +21,31 @@ class SongAdapter : RecyclerView.Adapter<SongAdapter.SongViewHolder>()  {
                 val song = songs?.get(this.adapterPosition)
                 onListaClickListener?.onListaBorrarClick(song)
             }
-
+/*
             binding.root.setOnClickListener {
                 val song = songs?.get(this.adapterPosition)
                 onListaClickListener?.onListaClick(song)
             }
         }
-    }
 
+ */
+        }
+
+            /*
+            binding.root.setOnClickListener {
+                val song = songs?.get(this.adapterPosition)
+                onListaClickListener?.onListaClick(song)
+            }
+
+             */
+
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongAdapter.SongViewHolder {
         val binding = SongsItemBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
 
         return SongViewHolder(binding)
     }
-
     override fun onBindViewHolder(songViewHolder: SongAdapter.SongViewHolder, pos: Int) {
 
         with(songViewHolder) {
@@ -44,7 +55,18 @@ class SongAdapter : RecyclerView.Adapter<SongAdapter.SongViewHolder>()  {
                 binding.tvArtist.text = artist
                 binding.tvYear.text = year
                 binding.tvAlbum.text = album
+                Glide.with(binding.root).load(photo).into(binding.ivArtist)
             }
+        }
+    }
+
+    class SongComparator : DiffUtil.ItemCallback<Song>() {
+        override fun areItemsTheSame(oldItem: Song, newItem: Song): Boolean {
+            return oldItem === newItem
+        }
+
+        override fun areContentsTheSame(oldItem: Song, newItem: Song): Boolean {
+            return oldItem.name == newItem.name
         }
     }
 
@@ -55,8 +77,8 @@ class SongAdapter : RecyclerView.Adapter<SongAdapter.SongViewHolder>()  {
         notifyDataSetChanged()
     }
 
-    interface OnSongClickListener {
-        fun onListaClick(lista: Song?)
+    interface onSongClickListener {
+        //fun onListaClick(lista: Song?)
         fun onListaBorrarClick(lista: Song?)
     }
 
